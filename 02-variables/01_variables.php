@@ -162,6 +162,96 @@
           <!-- FIN COL -->
         </section>
         <!-- FIN ROW -->
+        <section>
+          <div class="col-md-8">
+              <h2>Les opérateurs d'affectation combinés</h2>
+              <p>En plus de l'opérateur classique d'affectation = il en existe plusieurs</p>
+              <table class="table table-striped">
+                  <thead>
+                      <tr>
+                          <th scope="row">Opérateur</th>
+                          <th scope="row">Description</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <th scope="row">+=</th>
+                          <td>
+                            Addition puis affectation :
+                            <br>
+                            $x += $y équivaut à $x = $x + $y
+                            <br>
+                            $y peut être une expression complexe dont la valeur est un nombre.
+                          </td>
+                      </tr>
+                      <tr>
+                          <th scope="row">-=</th>
+                          <td>Soustraction puis affectation :
+                              <br>
+                              $x -= $y équivaut à $x = $x - $y
+                              <br>
+                              $y peut être une expression complexe dont la valeur est un nombre.
+                          </td>
+                      </tr>
+                      <tr>
+                          <th scope="row">*=</th>
+                          <td>Multiplication puis affectation :
+                              <br>
+                              $x *= $y équivaut à $x = $x * $y
+                              <br>
+                              $y peut être une expression complexe dont la valeur est un nombre.
+                            </td>
+                      </tr>
+                      <tr>
+                          <th scope="row">**=</th>
+                          <td>
+                              Puissance puis affectation
+                              <br>
+                              $x**=2 équivaut à $x=($x)²
+                          </td>
+                      </tr>
+                      <tr>
+                          <th scope="row">/=</th>
+                          <td>Division puis affectation :
+                              <br>
+                              $x /= $y équivaut à $x = $x / $y
+                              <br>
+                              $y peut être une expression complexe dont la valeur est un nombre différent de 0.
+                          </td>
+                      </tr>
+                      <tr>
+                          <th scope="row">%=</th>
+                          <td>Modulo puis affectation :
+                              <br>
+                              $x %= $y équivaut à $x = $x % $y $y
+                              <br>
+                              $y peut être une expression complexe dont la valeur est un nombre.
+                          </td>
+                      </tr>
+                      <tr>
+                          <th scope="row">.=</th>
+                          <td>Concaténation puis affectation :
+                              <br>
+                              $x .= $y équivaut à $x = $x . $y
+                              <br>
+                              $y peut être une expression littérale dont la valeur est une chaîne de caractères.
+                          </td> 
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <!-- fin col -->
+        </section>
+        <!-- fin Row  -->
+        <section class="row">
+          <div class="col-sm-12">
+            <h2>Les constantes</h2>
+            <p>Vous serez parfois amené à utiliser de manière répétitive des informations devant rester constantes dans toutes les pages d’un même site. Il peut s’agir de texte ou de nombres qui reviennent souvent. Pour ne pas risquer l’écrasement accidentel de ces valeurs, qui pourrait se produire si elles étaient contenues dans des variables, vous avez tout intérêt à les enregistrer sous forme de constantes personnalisées.</p>
+            <p>On peut définir ses constantes soi-même : pour définir des constantes personalisées, utilisez la fonction <code>define()</code> dont la syntaxe est la suivante <code></code> cf. la page suivante <a href="../00-pages/03_page.php">page avec des constantes</a></p>
+          </div>
+          <!-- FIN COL -->
+        </section>
+        <!-- FIN ROW -->
             
     </div>
     <!-- fin container  -->

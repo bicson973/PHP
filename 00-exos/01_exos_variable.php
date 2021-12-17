@@ -1,13 +1,17 @@
 <?php
+// appel de mon ficher de fonctions
+require_once '../inc/functions.php';
 
 // 6 variables pour tester plus bas dans la page
-
 $chaine = "Longtemps je me suis couché ... dans le temps.";
 $decimal = 18.74;
 $entier = 1515;
 
-?>
+$lib = "Liberté";
+$egal = "Égalité";
+$frat = "Fraternité";
 
+?>
 <!doctype html>
 <html lang="fr">
   <head>
@@ -24,39 +28,88 @@ $entier = 1515;
 
   </head>
   <body>
-    <header class="container-fluid bg-light">
+  <header class="container-fluid bg-light">
         <h1>CoursPHP - Exo 01 Variables</h1>
     </header> 
+    <!-- fin container-fluid  -->
+
     <div class="container bg-light">
-      <section class="row bg-warning text-white">
+      <section class="row border border-success">
         <div class="col-sm-12">
           <?php
           echo $entier;
+          // echo gettype() nous donne le type de données contenues dans une variable
           echo gettype($decimal);
-        //   echo gettype() nous donne le type de données contenues dans une variable
-          echo "<hr>";
+          echo "<p>coucou Imran !</p>";
           print_r("<p>Afficher du contenu avec la fonction <code>print_r()</code></p>");
           print_r($chaine);
-          echo "<br>";
-          echo dateFR();
+
+          //j'appelle la fonction minute papillon
+          minutePap();
+          // une autre fonction pour afficher le jour en langue anglaise en toute lettre 
+          whatDay();
+          echo "<hr>";
+
+          // exo écrire la phrase suivante "la devise de la République française est liberté, égalité, fraternité en tuilisant les variables déclarées au debut du fichier
+
+          echo "<p>La devise de la République française est $lib, $egal, $frat</p>";
+
+          echo "<hr>";
+          dateFR();
+          
           ?>
         </div>
       </section>
     </div>
 
+
+
     <div class="container bg-light">
       <section class="row">
         <div class="col-sm-12">
-          
+        <th scope="row">+=</th>
+          <td>
+          Addition puis affectation :<br>
+          $x += $y équivaut à $x = $x + $y<br>
+          $y peut être une expression complexe dont la valeur est un nombre.
+          </td>
+        <th scope="row">-=</th>
+          <td>Soustraction puis affectation :<br>
+            $x -= $y équivaut à $x = $x - $y<br>
+            $y peut être une expression complexe dont la valeur est un nombre.</td>
+
+        <th scope="row">*=</th>
+          <td>Multiplication puis affectation :<br>
+          $x *= $y équivaut à $x = $x * $y<br>
+          $y peut être une expression complexe dont la valeur est un nombre.</td>
+
+        <th scope="row">**=</th>
+          <td>Puissance puis affectation<br>
+          $x**=2 équivaut à $x=($x)²</td>
+
+        <th scope="row">/=</th>
+          <td>Division puis affectation :<br>
+          $x /= $y équivaut à $x = $x / $y<br>
+          $y peut être une expression complexe dont la valeur est un nombre différent de 0.</td>
+
+        <th scope="row">%=</th>
+          <td>Modulo puis affectation :<br>
+            $x %= $y équivaut à $x = $x % $y $y<br>
+            $y peut être une expression complexe dont la valeur est un nombre.</td>
+
+        <td>Concaténation puis affectation :<br>
+          $x .= $y équivaut à $x = $x . $y<br>
+          $y peut être une expression littérale dont la valeur est une chaîne de caractères.</td>
+
         </div>
       </section>
     </div>
-    <!-- fin container-fluid  -->
     
 
     <!-- fin container  -->
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+    
   </body>
 </html>
