@@ -1,6 +1,5 @@
 <?php
-// appel de mon ficher de fonctions
-require_once '../inc/functions.php';
+require_once '../inc/functions.php';  // appel du fichier de fonctions
 
 // 6 variables pour tester plus bas dans la page
 $chaine = "Longtemps je me suis couché ... dans le temps.";
@@ -56,6 +55,10 @@ $frat = "Fraternité";
 
           echo "<hr>";
           dateFR();
+
+          echo "<hr>";
+
+          if (defined("validator")) echo "la constante validator est bien définie";
           
           ?>
         </div>
@@ -67,40 +70,7 @@ $frat = "Fraternité";
     <div class="container bg-light">
       <section class="row">
         <div class="col-sm-12">
-        <th scope="row">+=</th>
-          <td>
-          Addition puis affectation :<br>
-          $x += $y équivaut à $x = $x + $y<br>
-          $y peut être une expression complexe dont la valeur est un nombre.
-          </td>
-        <th scope="row">-=</th>
-          <td>Soustraction puis affectation :<br>
-            $x -= $y équivaut à $x = $x - $y<br>
-            $y peut être une expression complexe dont la valeur est un nombre.</td>
-
-        <th scope="row">*=</th>
-          <td>Multiplication puis affectation :<br>
-          $x *= $y équivaut à $x = $x * $y<br>
-          $y peut être une expression complexe dont la valeur est un nombre.</td>
-
-        <th scope="row">**=</th>
-          <td>Puissance puis affectation<br>
-          $x**=2 équivaut à $x=($x)²</td>
-
-        <th scope="row">/=</th>
-          <td>Division puis affectation :<br>
-          $x /= $y équivaut à $x = $x / $y<br>
-          $y peut être une expression complexe dont la valeur est un nombre différent de 0.</td>
-
-        <th scope="row">%=</th>
-          <td>Modulo puis affectation :<br>
-            $x %= $y équivaut à $x = $x % $y $y<br>
-            $y peut être une expression complexe dont la valeur est un nombre.</td>
-
-        <td>Concaténation puis affectation :<br>
-          $x .= $y équivaut à $x = $x . $y<br>
-          $y peut être une expression littérale dont la valeur est une chaîne de caractères.</td>
-
+          
         </div>
       </section>
     </div>
