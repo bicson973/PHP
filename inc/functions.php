@@ -35,4 +35,5 @@ function debug($mavar) {// la fonction avec son paramètre, une variable
     var_dump($mavar);// à cette variable on applique le fonction var_dump()
     echo "</pre>";
 }
+
 ?>
