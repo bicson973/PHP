@@ -93,9 +93,7 @@
 
         <section class="row">
             <div class="col-md-12">
-            <div class="col-md-6">
                 <h2>1 - Afficher des données de la table employes sur un tableau :</h2>
-
                 <?php
                     $resultat = $pdoENT->query( " SELECT * FROM employes ORDER BY id_employes DESC ");
                     // debug($resultat);
@@ -104,13 +102,11 @@
                 ?>
             </div>
             <!-- fin col -->        
-            </div>
         </section>
         <!-- fin row -->
 
-
         <section class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <h2>Il y a <?php echo $nbr_employes; ?> employés</h2>
                 <table class="table table-striped">
                     <thead>
@@ -122,6 +118,7 @@
                             <th>Service</th>
                             <th>Salaire</th>
                             <th>Date d'embauche</th>
+                            <th>Fiche employes</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -135,6 +132,7 @@
                         <td><?php echo $ligne['service']; ?></td>
                         <td><?php echo $ligne['salaire']; ?></td>
                         <td><?php echo $ligne['date_embauche']; ?></td>
+                        <td><a href="03_fiche_employes.php?id_employes=<?php echo $ligne['id_employes']; ?>">Fiche</a></td>
                         </tr>
                         <!-- Fermeture de la boucle while avec l'accolade fermante ici : -->
                         <?php } ?>
@@ -142,11 +140,7 @@
                 </table>
             </div>
             <!-- fin col -->
-        </section>
-        <!-- fin row -->
-
-        <section class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 pt-5">
                 <h2>Formulaire d'insertion d'un nouvel employé</h2>
                 <!-- form avec action et method < action est vide car nous envoyons les données avec cette même page??? et POST va envoyer dans la superglobale $_POST -->
 
@@ -203,34 +197,11 @@
                     <!-- <input type="submit"></input> -->
                 </form>
             </div>
-            <!-- fin col -->
-
-
-            <div class="col-md-6">
-                <h2></h2>
-               
-            </div>
-            <!-- fin col -->   
+            <!-- fin col -->  
         </section>
         <!-- fin row -->
 
-
-
-        <section class="row">
-            <div class="col-md-6">
-                <h2></h2>
-               
-            </div>
-            <!-- fin col -->
-
-
-            <div class="col-md-6">
-                <h2></h2>
-               
-            </div>
-            <!-- fin col -->           
-        </section>
-        <!-- fin row -->
+        
     </div>
     <!-- fin div container -->
 

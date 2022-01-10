@@ -128,8 +128,7 @@
             </div>
         </section>
         <!-- fin row -->
-
-
+        
         <section class="row">
             <div class="col-md-12">
                 <h2>Il y a <?php echo $nbr_commentaires; ?> commentaires !</h2>
@@ -160,60 +159,29 @@
         </section>
         <!-- fin row -->
 
-
         <section class="row">
-            <div class="col-md-6">
-                <h2>Insertion d'un message</h2>
-                <!-- form avec action et method < action est vide car nous envoyons les données avec cette même page??? et POST va envoyer dans la superglobale $_POST -->
-                <ul>
-                  <li>Faire un formulaire HTML</li>
-                  <li>Avec method et POST</li>
-                </ul>
+        <div class="col-md-6">
+            <h5>Insertion d'un message</h5>
+			<!-- form avec action et method > action est vide car nous envoyons les données avec cette même page et POST va envoyer dans la superglobale $_POST -->
+			<form action="" method="POST" class="border border-primary p-1">
 
-                <form action="" method="POST">
-                    <div class="mb-3">
-                        <label for="pseudo" class="form-label">Votre pseudo</label>
-                        <input type="text" name="pseudo" id="pseudo" class="form-control" required></input>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Votre message</label>
-                        <textarea name="message" id="message" cols="30" rows="5" class="form-control" required></textarea>
-                    </div>
-                                    
-                    <input type="submit"></input>
-                </form>
-            </div>
-            <!-- fin col -->
+				<div class="mb-3">
+					<label for="pseudo" class="form-label">Votre pseudo</label>
+					<input type="text" name="pseudo" id="pseudo" class="form-control" required>
+				</div>
 
+				<div class="mb-3">
+					<label for="message" class="form-label">Votre message</label>
+					<textarea name="message" id="message" cols="30" rows="5" class="form-control" required></textarea>
+			   </div>
 
-            <div class="col-md-6">
-                <h2></h2>
-               
-            </div>
-            <!-- fin col -->   
+			   <button type="submit" class="btn btn-primary">Envoyer votre message</button>
+
+			</form>
+          </div>
+          <!-- fin col -->          
         </section>
         <!-- fin row -->
-
-        <section class="row">
-            <div class="col-md-6">
-                <h2></h2>
-               
-            </div>
-            <!-- fin col -->
-
-
-            <div class="col-md-6">
-                <h2></h2>
-               
-            </div>
-            <!-- fin col -->           
-        </section>
-        <!-- fin row -->
-
-
-            
-
     </div>
     <!-- fin div container -->
 
