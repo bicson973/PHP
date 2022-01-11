@@ -1,6 +1,8 @@
-<?php require_once '../inc/functions.php'; ?>
+<?php require_once '../inc/functions.php'; ?> <!-- APPEL DE FONCTION -->
+
 <!doctype html>
 <html lang="fr">
+
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -18,8 +20,8 @@
     
     <!-- mes styles -->
     <link rel="stylesheet" href="../css/style.css">
-
   </head>
+
   <body> 
     <main>
       <header class="container-fluid f-header p-2">
@@ -27,40 +29,49 @@
         <p class="lead">Connexion à notre BDD avec PDO</p>
       </header> 
       <!-- fin container-fluid header  -->
-  
+
+      <!-- ======================================== CONTENU PRINCIPALE ======================================= -->
       <div class="container bg-white mt-2 mb-2 m-auto p-2">
-  
         <section class="row p-2">
-  
           <div class="col-md-5 bg-teal">
             <h2>1- Se connecter à la BDD</h2>
             <p><abbr title="PHP Data Object">PDO</abbr> est l'acronyme de PHP Data Object</p>
-            <p>Pour se connecter à la BDD en PDO on définit une variable de connexion<br>
-            <code>
-            $pdoENT = new PDO( 'mysql:host=localhost;dbname=entreprise',<br>
-              'root',<br>
-              '',<br>
-              // 'root',// mdp pour MAC<br>
-              array(<br>
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,<br>
-                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',<br>
-              ));<br>
-  
-            </code></p>
-  
+            <p>
+              Pour se connecter à la BDD en PDO on définit une variable de connexion
+              <br>
+              <code>
+                $pdoENT = new PDO( 'mysql:host=localhost;dbname=entreprise',<br>
+                'root',
+                <br>
+                '', // mdp pour PC XAMP
+                <br>
+                'root', // mdp pour MAC MAMP
+                <br>
+                array(
+                <br>
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
+                <br>
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+                <br>
+                ));
+                <br>
+              </code>
+            </p>
+            <!-- ======================================== FONCTION PHP ======================================= -->
             <?php 
-            // connexion à la BDD
-              $pdoENT = new PDO( 'mysql:host=localhost;dbname=entreprise',// hôte et nom de la BDD
-              'root',// le pseudo 
-              // '',// le mot de passe
-              'root',// le mdp pour MAC avec MAMP
+              // connexion à la BDD
+              $pdoENT = new PDO( 'mysql:host=localhost;dbname=entreprise', /* hôte et nom de la BDD */
+              'root', /* le pseudo  */
+              // '',// le mot de passe PC avec XAMP
+              'root', /* le mdp pour MAC avec MAMP */
               array(
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,// pour afficher les erreurs SQL dans le navigateur
-                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',// pour définir le charset des échanges avec la BDD
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, /* pour afficher les erreurs SQL dans le navigateur */
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', /* pour définir le charset des échanges avec la BDD */
               ));
               // debug($pdoENT);
               // debug(get_class_methods($pdoENT));// ici nous aurons la liste des méthodes présentes dans l'objet $pdoENT
-            ?> 
+            ?>
+            <!-- ======================================== FIN FONCTION PHP ======================================= -->
           </div>
           <!-- fin col -->
   
@@ -71,10 +82,11 @@
               <li>Succès ; le var_dump() de la variable $requete donnera le nombre de lignes affectées par la requête = X </li>
               <li>Echec : false = 0</li>
             </ul>
+            <!-- ======================================== FONCTION PHP ======================================= -->
             <?php 
-              // on va insérer un nouvel employé dans BDD entreprise
-              // toutes les lignes sont commentées afin de ne pas faire de requêtes inutiles en BDD
-                // ma requête SLQ que j'aurai testé avant dans phpMyAdmin
+              // On va insérer un nouvel employé dans BDD entreprise
+              // Toutes les lignes sont commentées afin de ne pas faire de requêtes inutiles en BDD
+              // Ma requête SLQ que j'aurai testé avant dans phpMyAdmin
               // INSERT INTO employes (prenom, nom, sexe, service, date_embauche, salaire) VALUES ('Jean', 'Saisrien', 'm', 'informatique', '2022-01-03', '2000')
   
               // $requete = $pdoENT->exec( " INSERT INTO employes (prenom, nom, sexe, service, date_embauche, salaire) VALUES ('Jean', 'Saisrien', 'm', 'informatique', '2022-01-03', '2000') " );
@@ -84,7 +96,8 @@
               // debug($requete);
               // echo "Dernier id généré en BDD : " .$pdoENT->lastInsertId();
               // $requete = $pdoENT->exec( " UPDATE employes SET nom='COCO' WHERE nom='Saisrien' " );
-            ?> 
+            ?>
+            <!-- ======================================== FIN FONCTION PHP ======================================= -->
           </div>
           <!-- fin col -->
         </section>
@@ -94,14 +107,14 @@
           <div class="col-md-12 bg-light">
             <h2>3- Faire des requêtes avec <code>query()</code></h2>
             <p>La méthode <code>query()</code> est utilisée pour faire des requêtes qui retournent un ou plusieurs résultats : SELECT, mais aussi DELETE, UPDATE et INSERT </p>
-            <p>Pour information on peut mettre dans les paramètres de fetch() :
+            <p>Pour information on peut mettre dans les paramètres de fetch() :</p>
             <ul>
               <li>PDO::FETCH_ASSOC : pour obtenir un tableau associatif</li>
               <li>PDO::FETCH_NUM :  pour obtenir un tableau avec des indices numériques</li>
               <li>PDO::FETCH_OBJ : pour obtenir un dernier objet</li>
               <li>ou encore des parenthèses vides pour obtenir un mélange de tableau associatif et numérique</li>
             </ul>
-  
+            <!-- ======================================== FONCTION PHP ======================================= -->
             <?php 
               // SELECT * FROM employes WHERE prenom='Fabrice'
               // 1 on demande avec query() des informations à la BDD car il y a un ou plusieurs résultats 
@@ -126,16 +139,19 @@
               echo "<p class=\"alert alert-success w-50\"> Nom : " .$ligne['prenom']. " " .$ligne['nom']. " - ID : " .$ligne['id_employes']. "<br>";
               echo "Salaire : " .$ligne['salaire']. " Euros - Service : " .$ligne['service']. "<br>";
               echo "Date d'embauche : " .$ligne['date_embauche']. " - Sexe : " .$ligne['sexe']. "</p>";
-            ?> 
+            ?>
+            <!-- ======================================== FIN FONCTION PHP ======================================= -->
           </div>
-        <!-- fin col -->
+          <!-- fin col -->
           <div class="col-md-4 bg-cyan">
             <h2>4- Faire des requêtes avec <code>query()</code> et afficher plusieurs résultats</h2>
+            <!-- ======================================== FONCTION PHP ======================================= -->
             <?php 
               // SELECT * FROM employes ORDER BY nom
               $requete = $pdoENT->query(" SELECT * FROM employes ORDER BY nom ");
               $nbr_employes = $requete->rowCount();
               // debug($nbr_employes);
+
               echo "<p>Il y a $nbr_employes employes dans l'entreprise<br>";
               while ( $ligne = $requete->fetch(PDO::FETCH_ASSOC)) {
                 echo "Nom : " .$ligne['prenom']. " " .$ligne['nom']." -  service : " .$ligne['service']. "<br>";
@@ -148,6 +164,7 @@
               $requete = $pdoENT->query(" SELECT DISTINCT(service) FROM employes ORDER BY service ");
               $nbr_services = $requete->rowCount();
               // debug($nbr_services);
+
               echo "<div class=\"bg-white\">";
               echo "<p>Il y a $nbr_services services dans l'entreprise</p>";
               echo "<ul>";
@@ -156,6 +173,7 @@
               }
               echo "</ul></div>";
             ?>
+            <!-- ======================================== FIN FONCTION PHP ======================================= -->
   
             <!-- <ul class="alert alert-success">
               <?php            
@@ -169,7 +187,7 @@
             </ul> -->
           </div>
           <div class="col-md-8 bg-yellow">
-  <!-- Exo 1 dans un h2 afficher la phrase suivante "il y X employés dans l'entreprise -->
+            <!-- Exo 1 dans un h2 afficher la phrase suivante "il y X employés dans l'entreprise -->
             <!-- puis afficher TOUTES les informations des employés dans un tableau HTML -->
             <!-- la requête SQL est triée par sexe puis par nom de famille -->
   
