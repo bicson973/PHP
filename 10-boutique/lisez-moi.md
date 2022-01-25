@@ -9,3 +9,7 @@ TABLE details_commande id_detail_commande id_commande id_produit quantite prix
 TABLE membres id_membre pseudo mdp nom prenom email civilite (enum, 'm', 'f') ville code_postal adresse statut // si on est admin ou client
 
 TABLE produit id_produit reference categorie titre description couleur taille public (enum 'm', 'f', 'mixte') photo prix stock
+
+donner schéma BDD
+
+PAGE INSCRIPTION faire un formulaire qui servira à l'inscription d'un utilisateur
