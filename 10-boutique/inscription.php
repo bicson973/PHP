@@ -31,13 +31,16 @@ if ( !empty($_POST) ) {
     if ( !isset($_POST['mdp']) || strlen($_POST['mdp']) < 4 || strlen($_POST['mdp']) > 20) {
         $contenu .='<div class="alert alert-danger">Votre mot de passe doit faire entre 4 et 20 caractères</div>';
     }
+
     if ( !isset($_POST['adresse']) || strlen($_POST['adresse']) < 4 || strlen($_POST['adresse']) > 50) {
         $contenu .='<div class="alert alert-danger">Votre adresse doit faire entre 4 et 50 caractères</div>';
     }
+
     if ( !isset($_POST['code_postal']) || !preg_match('#^[0-9]{5}$#', $_POST['code_postal']) ) {
         // preg_match vérifie si la chaîne de caractère a le format autorisé
         $contenu .='<div class="alert alert-danger">Le code postal n\'est pas valable !</div>';
     }
+    
     if ( !isset($_POST['ville']) || strlen($_POST['ville']) < 1 || strlen($_POST['ville']) > 50) {
         $contenu .='<div class="alert alert-danger">Votre ville doit faire entre 1 et 50 caractères</div>';
     }
