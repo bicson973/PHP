@@ -2,11 +2,11 @@
 // require connexion, session etc.
 require_once 'inc/init.inc.php';
 
-debug($_SESSION);
+// debug($_SESSION);
 // debug(strlen(' ma grand mère fait du vélo plus vite que moi '));
 
 if ( !empty($_POST) ) {
-    debug($_POST);
+    // debug($_POST);
 
     if ( !isset($_POST['civilite']) || $_POST['civilite'] != 'm' && $_POST['civilite'] != 'f' ) { // && ET
         $contenu .='<div class="alert alert-danger">La civilité n\'est pas valable !</div>';
@@ -67,7 +67,7 @@ if ( !empty($_POST) ) {
                 ':ville' => $_POST['ville'],
             ));
             if ($succes) {
-                $contenu .='<div class="alert alert-success">Vous êtes bien inscrit à La Boutique !</div>';
+                $contenu .='<div class="alert alert-success">Vous êtes bien inscrit à La Boutique !<br> <a href="connexion.php">Cliquez ici pour vous connecter</a></div>';
             } else {
                 $contenu .='<div class="alert alert-danger">Erreur lors de l\'inscription !</div>';
             }
