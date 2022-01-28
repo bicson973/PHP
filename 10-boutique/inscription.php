@@ -2,57 +2,56 @@
 // require connexion, session etc.
 require_once 'inc/init.inc.php';
 
-// debug($_SESSION);
+debug($_SESSION);
 // debug(strlen(' ma grand mère fait du vélo plus vite que moi '));
 
 if ( !empty($_POST) ) {
     // debug($_POST);
 
+    // 1/ les if qui suivent vérifient si les valeurs passées dans $_POST correspondent à ce qui est attendu et autorisé en BDD 
+
     if ( !isset($_POST['civilite']) || $_POST['civilite'] != 'm' && $_POST['civilite'] != 'f' ) { // && ET
-        $contenu .='<div class="alert alert-danger">La civilité n\'est pas valable !</div>';
+        $contenu .='<div class="alert alert-warning">La civilité n\'est pas valable !</div>';// 2 ex. si il n'y a rien dans le $_POST ['civilite'] OU si il contient soit 'm' et soit 'f' (qui sont les valeurs autorisées) je ne remplis pas $contenu
     }
     if ( !isset($_POST['prenom']) || strlen($_POST['prenom']) < 2 || strlen($_POST['prenom']) > 20) {
-        // !isset n'est pas isset, .= concaténation puis affectation, || ou, strlen string length longueur chainbe de caractère
-        $contenu .='<div class="alert alert-danger">Votre prénom doit faire entre 2 et 20 caractères</div>';
+        // !isset n'est pas isset, .= concaténation puis affectation, || ou, strlen string length longueur de la chaîne de caractère
+        $contenu .='<div class="alert alert-warning">Votre prénom doit faire entre 2 et 20 caractères</div>';
     }
     if ( !isset($_POST['nom']) || strlen($_POST['nom']) < 2 || strlen($_POST['nom']) > 20) {
-        $contenu .='<div class="alert alert-danger">Votre nom de famille doit faire entre 2 et 20 caractères</div>';
+        $contenu .='<div class="alert alert-warning">Votre nom de famille doit faire entre 2 et 20 caractères</div>';
     }
 
     if ( !isset($_POST['email']) || strlen($_POST['email']) > 50 || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-        // filter_var filtre une variable, et dans ce filtre on passe la constante prédéfinie (EN MAJUSCULE) qui vérifie que c'est bien au format email
-        $contenu .='<div class="alert alert-danger">Votre email n\'est pas conforme !</div>';
+        // filter_var() fonction prédéfinie en PHP, qui filtre une variable, et dans ce filtre on passe la constante prédéfinie (NOM DE LA CONSTANTE EST EN MAJUSCULE) qui vérifie que c'est bien au format email
+        $contenu .='<div class="alert alert-warning">Votre email n\'est pas conforme !</div>';
     }
 
     if ( !isset($_POST['pseudo']) || strlen($_POST['pseudo']) < 4 || strlen($_POST['pseudo']) > 20) {
-        $contenu .='<div class="alert alert-danger">Votre pseudo doit faire entre 4 et 20 caractères</div>';
+        $contenu .='<div class="alert alert-warning">Votre pseudo doit faire entre 4 et 20 caractères</div>';
     }
 
     if ( !isset($_POST['mdp']) || strlen($_POST['mdp']) < 4 || strlen($_POST['mdp']) > 20) {
-        $contenu .='<div class="alert alert-danger">Votre mot de passe doit faire entre 4 et 20 caractères</div>';
+        $contenu .='<div class="alert alert-warning">Votre mot de passe doit faire entre 4 et 20 caractères</div>';
     }
-
     if ( !isset($_POST['adresse']) || strlen($_POST['adresse']) < 4 || strlen($_POST['adresse']) > 50) {
-        $contenu .='<div class="alert alert-danger">Votre adresse doit faire entre 4 et 50 caractères</div>';
+        $contenu .='<div class="alert alert-warning">Votre adresse doit faire entre 4 et 50 caractères</div>';
     }
-
     if ( !isset($_POST['code_postal']) || !preg_match('#^[0-9]{5}$#', $_POST['code_postal']) ) {
-        // preg_match vérifie si la chaîne de caractère a le format autorisé
-        $contenu .='<div class="alert alert-danger">Le code postal n\'est pas valable !</div>';
+        // preg_match() vérifie si la chaîne de caractère est constitué des caractères autorisés dans le premier paramètre > '#^[0-9]{5}$#'
+        $contenu .='<div class="alert alert-warning">Le code postal n\'est pas valable !</div>';
     }
-    
     if ( !isset($_POST['ville']) || strlen($_POST['ville']) < 1 || strlen($_POST['ville']) > 50) {
-        $contenu .='<div class="alert alert-danger">Votre ville doit faire entre 1 et 50 caractères</div>';
+        $contenu .='<div class="alert alert-warning">Votre ville doit faire entre 1 et 50 caractères</div>';
     }
 
-    if (empty($contenu)) {// si la variable est vide c'est qu'il n'y a aucune erreur dans $_POST
+    if (empty($contenu)) {// si la variable qui affiche les avertissements est vide c'est qu'il n'y a aucune erreur dans $_POST
         $membre = executeRequete( " SELECT * FROM membres WHERE pseudo = :pseudo ", 
-                                        array(':pseudo' => $_POST['pseudo']));
+                                        array(':pseudo' => $_POST['pseudo']));// on cherche si il y a un membre avec le pseudo rentré dans $_POST
 
-        if ($membre->rowCount() > 0) {
-            $contenu .='<div class="alert alert-danger">Le pseudo est indisponible veuillez en choisir un autre !</div>';
-        } else {
-            $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);//bcrypt
+        if ($membre->rowCount() > 0) {// si au décompte de cette requête le résultat ne donne pas 0, c'est que le pseudo existe 
+            $contenu .='<div class="alert alert-warning">Le pseudo est indisponible veuillez en choisir un autre !</div>';
+        } else { // sinon on exécute la requête d'insertion
+            $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);// On hâche le mot de passe avec la fonction prédéfinie password_hash() avec un algorithme 'bcrypt' on passe cette information en variable 
 
             $succes = executeRequete( " INSERT INTO membres (civilite, prenom, nom, email, pseudo, mdp, adresse, code_postal, ville, statut) VALUES (:civilite, :prenom, :nom, :email, :pseudo, :mdp, :adresse, :code_postal, :ville, 0) ",
             array(
@@ -61,11 +60,15 @@ if ( !empty($_POST) ) {
                 ':nom' => $_POST['nom'],
                 ':email' => $_POST['email'],
                 ':pseudo' => $_POST['pseudo'],
-                ':mdp' => $mdp,
+                ':mdp' => $mdp,// ici on récupère le mdp de la variable qui le contient le hash du mot de passe
                 ':adresse' => $_POST['adresse'],
                 ':code_postal' => $_POST['code_postal'],
                 ':ville' => $_POST['ville'],
             ));
+
+            // AJOUTER LORS DE LA MISE EN LIGNE LA FONCTION mail()
+
+            // debug($succes);
             if ($succes) {
                 $contenu .='<div class="alert alert-success">Vous êtes bien inscrit à La Boutique !<br> <a href="connexion.php">Cliquez ici pour vous connecter</a></div>';
             } else {
@@ -75,8 +78,8 @@ if ( !empty($_POST) ) {
     }
 }
 
+// A FAIRE rajouter required sur les champs du form, puis rajouter un second champ mdp pour vérifier si le mdp saisi dans le 1er champ est identique dans le second 
 ?> 
-
 <!doctype html>
 <html lang="fr">
   <head>
@@ -91,14 +94,15 @@ if ( !empty($_POST) ) {
   </head>
   <body class="m-2">
    <header class="container bg-primary text-white p-4 ">
-        <h1>Créez votre compte</h1>
+        <h1 class="display-4">Créez votre compte</h1>
+        <p class="lead">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti amet qui accusantium reprehenderit placeat! Officiis laborum voluptatum incidunt, iure enim, tempore aperiam necessitatibus rerum ipsam, blanditiis sunt voluptates neque ex?</p>
    </header>
 
-   <div class="container">
+   <div class="container"><?php echo $contenu; ?>
         <section class="row m-4 justify-content-center">
              
             <div class="col-md-6 p-2 bg-light border border-primary">
-                <?php echo $contenu; ?>
+                
                 <form action="" method="POST">
                 <div class="form-group mt-2">
                     <label for="civilite">Civilité *</label>
@@ -108,20 +112,20 @@ if ( !empty($_POST) ) {
                 <div class="row">
                     <div class="col form-group mt-2">
                         <label for="prenom">Prénom *</label>
-                        <input type="text" name="prenom" id="prenom" value="" class="form-control"> 
+                        <input type="text" name="prenom" id="prenom" value="" class="form-control" required> 
                     </div>
                     <div class="col form-group mt-2">
                         <label for="nom">Nom *</label>
-                        <input type="text" name="nom" id="nom" value="" class="form-control">
+                        <input type="text" name="nom" id="nom" value="" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group mt-2">
                     <label for="email">Email *</label>
-                    <input type="text" name="email" id="email" value="" class="form-control">
+                    <input type="text" name="email" id="email" value="" class="form-control" required>
                 </div>
                 <div class="form-group mt-2">
                 <label for="pseudo">Choisissez un pseudo *</label>
-                <input type="text" name="pseudo" id="pseudo" value="" class="form-control"> 
+                <input type="text" name="pseudo" id="pseudo" value="" class="form-control" required> 
             </div>
             <div class="form-group mt-2">
                 <label for="mdp">Mot de passe *</label>

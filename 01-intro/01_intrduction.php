@@ -23,7 +23,7 @@
         <section class="row g-2 p-2">
           <div class="col-md-4">
             <h4>1/ Réaliser un site dynamique</h4>
-            <p>Pour réaliser une site dynamique nous allons aborder les points suivants : </p>
+            <p>Pour réaliser un site dynamique nous allons aborder les points suivants : </p>
             <ul>
               <li>La syntaxe et les caractéristiques du langage PHP (v7)</li>
               <li>Les notions essentielles du langage SQL permettant la gestion d'une BDD et la réalisation des requêtes de base</li>

@@ -32,13 +32,13 @@ require_once '../inc/functions.php'; // APPEL DES FONCTIONS
     <div class="container bg-white">
         <section class="row">
             <div class="col-sm-12 col-md-4">
-                        <h2>Les variables </h2>
-                        <p>Chaque variable possède un identifiant particulier, qui commence toujours par le caractère dollar ($) suivi du nom de la variable. Les règles de création des noms de variable sont les suivantes :</p>
-                        <ul>
-                            <li>Le nom commence par un caractère alphabétique, pris dans les ensembles [a-z], [A-Z] ou par le tiret bas (_).</li>
-                            <li>Les caractères suivants peuvent être les mêmes plus des chiffres.</li>
-                            <li>La longueur du nom n’est pas limitée, mais il convient d’être raisonnable sous peine de confusion dans la saisie du code. Il est conseillé de créer des noms de variable le plus « parlant » possible. En relisant le code contenant la variable $nomclient, par exemple, vous comprenez davantage ce que vous manipulez que si vous aviez écrit $x ou $y.</li>  
-                        </ul>
+                <h2>Les variables </h2>
+                <p>Chaque variable possède un identifiant particulier, qui commence toujours par le caractère dollar ($) suivi du nom de la variable. Les règles de création des noms de variable sont les suivantes :</p>
+                <ul>
+                    <li>Le nom commence par un caractère alphabétique, pris dans les ensembles [a-z], [A-Z] ou par le tiret bas (_).</li>
+                    <li>Les caractères suivants peuvent être les mêmes plus des chiffres.</li>
+                    <li>La longueur du nom n’est pas limitée, mais il convient d’être raisonnable sous peine de confusion dans la saisie du code. Il est conseillé de créer des noms de variable le plus « parlant » possible. En relisant le code contenant la variable $nomclient, par exemple, vous comprenez davantage ce que vous manipulez que si vous aviez écrit $x ou $y.</li>  
+                </ul>
             </div>
             <!-- fin col -->
 
