@@ -1,14 +1,25 @@
 <?php 
+// 1- Pour se connecter et se déconnecter
+
 // require connexion, session etc.
 require_once 'inc/init.inc.php';
-
-debug($_SESSION);
+// debug($_SESSION);
 
 // 2- DÉCONNEXION DU MEMBRE
+// debug($_GET);
+$message = '';
+if(isset($_GET['action']) && $_GET['action'] == 'deconnexion'){
+    unset($_SESSION['membre']);
+    $message = '<div class="alert alert-success">vous êtes déconnecté</div>';
+}
 
 // 3- REDIRECTION VERS LA PAGE PROFIL
+if (estConnecte()) {
+    header('location:profil.php');
+    exit();
+}
 
-// 1- TRAITEMENT DU FORMULAIRE DE CONNEXION
+// 4- TRAITEMENT DU FORMULAIRE DE CONNEXION
 
 // debug($_POST);
 if ( !empty( $_POST ) ) {
@@ -29,7 +40,7 @@ if ( !empty( $_POST ) ) {
 
         if ( $resultat->rowCount() == 1 )  {
             $membre = $resultat->fetch( PDO::FETCH_ASSOC ); 
-            debug($membre);
+            // debug($membre);
 
             if ( password_verify($_POST['mdp'], $membre['mdp'])) {
                 // echo 'coucou le membre';
@@ -44,7 +55,7 @@ if ( !empty( $_POST ) ) {
             $contenu .='<div class="alert alert-danger">Erreur sur les identifiants !</div>';
         } 
         
-    }//fin if empty $contenu
+    }// fin if empty $contenu
 
 }// fin vérification formulaire
 
@@ -73,6 +84,7 @@ if ( !empty( $_POST ) ) {
                 <!-- 1- FORMULAIRE DE CONNEXION   -->
                 <form action="" method="POST" class="">
                     <?php echo $contenu; ?>
+                    <?php echo $message; ?>
                     <div class="form-group mt-2">
                         <label for="pseudo">Pseudo *</label>
                         <input type="text" name="pseudo" id="pseudo" class="form-control"> 

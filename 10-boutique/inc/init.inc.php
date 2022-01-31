@@ -18,19 +18,23 @@ array(
   PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',// pour définir le charset des échanges avec la BDD
 ));
 
-var_dump(get_class_methods($pdoMAB));
+// var_dump(get_class_methods($pdoMAB));
 
 //2- OUVERTURE DE SESSION
 session_start();
 
 //3- CHEMIN DU SITE DANS UNE CONSTANTE
+// Ici on définit le chemin absolu dans une constante, on écrira tous les chemins src et href avec cette constante
+// Chez l'hebergeur on écrira ce qui suit
+// define('RACINE_SITE', '/');
+define('RACINE_SITE', '/PHP/10-boutique/');
 
 //4- UNE VARIABLE POUR LES MESSAGES ATTENTION ON INITIALISE LA VARIABLE VIDE, NE RIEN METTRE ENTRE LES QUOTES.
 $contenu = '';
 
 //5- INCLUSION DES FONCTIONS
 require_once 'functions.inc.php';
-debug($pdoMAB);
+// debug($pdoMAB);
 // debug(get_class_methods($pdoMAB));
 
 // on peut fermer le passage php ou non

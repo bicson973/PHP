@@ -2,13 +2,15 @@
 // require connexion, session etc.
 require_once 'inc/init.inc.php';
 
-debug($_SESSION);
-debug(estConnecte());
-debug(estAdmin());
+// debug($_SESSION);
+// debug(estConnecte());
+// debug(estAdmin());
 
 if (!estConnecte()){ /* accès à la page autorisé si lorsqu'on est connecté */
     header('location:connexion.php');
 }
+
+debug(RACINE_SITE);
 
 ?> 
 
@@ -33,10 +35,14 @@ if (!estConnecte()){ /* accès à la page autorisé si lorsqu'on est connecté *
     
     if(estAdmin()) {
         echo '<p>Vous êtes administrateur</p>';
-        echo '<a class="btn btn-primary" href="admin/index.p">Espace admin</a>'; 
+        echo '<a class="btn btn-secondary" href="'.RACINE_SITE.'admin/accueil.php">Espace admin</a>'; 
+        echo '<a class="btn btn-primary" href="'.RACINE_SITE.'accueil.php">Aller a la boutique</a>';
     } else {
         echo '<p>Vous êtes connecté rendez-vous à la Boutique</p>';
-        echo '<a class="btn btn-succes" href="accueil.php">Retour à la boutique</a>';
+        echo '<a class="btn btn-success" href="accueil.php">Retour à la boutique</a>';
+    }
+    if(estconnecte()) {
+        echo '<a class="btn btn-danger" href="' .RACINE_SITE. 'connexion.php?action=deconnexion">Se déconnecter</a>';
     }
 
     ?>

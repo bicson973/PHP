@@ -1,54 +1,35 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil Boutique</title>
-</head>
-<body>
-    <h1>Accueil - Boutique</h1>
-    <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-</body>
-</html>
-
-
-
 <?php
+  require_once 'inc/init.inc.php';
+ // debug($pdoMAB);
 
-// require connexion, session etc.
-require_once 'inc/init.inc.php';
-
-  $bddlink = $pdoBTQ->query ( "SELECT * FROM produits" );
-  $pdlink = $bddlink->fetch(PDO::FETCH_ASSOC);
-  //jeVar_dump($pdlink);
+ if(!estAdmin()){
+   header('location:../connexion.php');
+ }
+//  Accès autorisé uniquement aux admins
 
 ?>
 
 <!doctype html>
-<html lang="en">
-  <head>
+<html lang="fr">
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Accueil de Boutique</title>
-
+    <title>Boutique PHP</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
-
-    
-
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
+    <meta name="theme-color" content="#7952b3">
 
     <style>
       .bd-placeholder-img {
@@ -65,84 +46,76 @@ require_once 'inc/init.inc.php';
         }
       }
     </style>
+</head>
 
-    
-  </head>
-  <body>
-    
-<header>
-  <div class="collapse bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">About</h4>
-          <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-        </div>
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">Contact</h4>
-          <ul class="list-unstyled">
-            <li><a href="accueil.php" class="text-white">Home</a></li>
-            <li><a href="connexion.php" class="text-white">Sign In</a></li>
-            <li><a href="profile.php" class="text-white">Profile</a></li>
-          </ul>
+<body>
+  <header>
+    <div class="collapse bg-dark" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-md-7 py-4">
+            <h4 class="text-white">About</h4>
+            <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+          </div>
+          <div class="col-sm-4 offset-md-1 py-4">
+            <h4 class="text-white">Contact</h4>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white">Follow on Twitter</a></li>
+              <li><a href="#" class="text-white">Like on Facebook</a></li>
+              <li><a href="#" class="text-white">Email me</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container">
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <strong>Album</strong>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </div>
-</header>
 
-<main>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+          <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+          </svg>
 
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Accueil de Boutique</h1>
-        <p class="lead text-muted"><?php ?></p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        </p>
+          <strong>Ma Boutique</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
       </div>
     </div>
-  </section>
+  </header>
 
-  <div class="album py-5 bg-light">
-    <div class="container">
+  <main>
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-12 mx-auto">
+          <h1 class="fw-light">Ma Boutique en PHP</h1>
+          <p class="lead text-muted">Bienvenu dans ma boutique</p>
+          <p>
+            <a href="connexion.php" class="btn btn-primary my-2">Connexion</a>
+            <a href="inscription.php" class="btn btn-secondary my-2">Inscrivez-vous</a>
+          </p>
+        </div>
+      </div>
+    </section>
 
-    <h3 class="alert alert-primary">Il y les Products le plus récent</h3>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="album py-3 bg-light">
+      <div class="container">
         <?php
-          require_once 'inc/init.php'; // APPEL DES Connection, Session, FONCTIONS
-          //jeVar_dump($_SESSION);
-
-          $bddlink = $pdoBTQ->query ( "SELECT * FROM produits ORDER BY id_produit DESC" );
-          //$product = $bddlink->rowCount();
-          while($pdlink=$bddlink->fetch(PDO::FETCH_ASSOC)){
+          $articles = $pdoMAB->query ( "SELECT * FROM produits ORDER BY id_produit DESC");
+          while($shop = $articles->fetch(PDO::FETCH_ASSOC)) {
             echo "<div class=\"col\">";
-            echo "<div class=\"card shadow-sm\">";
-            echo "<img src=\"$pdlink[photo]\" class=\"img-fluid\" alt=\"Logo\">";
-
-            echo "<div class=\"card-body\">";
-                echo "<p class=\"card-text alert alert-info\">Prix : ".$pdlink['prix']. "€, *Ref : " .$pdlink['reference']. ", Color : " .$pdlink['couleur']."</p>";
-                echo "<p class=\"card-text alert-primary\">Categorie : ".$pdlink['categorie']. "</p>";
-                echo "<p class=\"card-text\">Discription : ".$pdlink['description']. "</p>";
-                echo "<div class=\"d-flex justify-content-between align-items-center\">";
-                echo "<div class=\"btn-group\">";
-                echo "<button type=\"button\" class=\"btn btn-sm btn-outline-secondary\">View</button>";
-                echo "<button type=\"button\" class=\"btn btn-sm btn-outline-secondary\">Edit</button>";
-                echo "</div>";
-                echo "<small class=\"text-muted\">9 mins</small>";
+              echo "<div class=\"card shadow-sm\">";
+                echo "<img src=\"$shop[photo]\" class=\"img-fluid\" alt=\"Logo\">";
+                echo "<div class=\"card-body\">";
+                    echo "<p class=\"card-text\">Prix : ".$shop['prix']. ", Color : " .$shop['couleur']."</p>";
+                    echo "<p class=\"card-text\">Categorie : ".$shop['categorie']. "</p>";
+                    echo "<p class=\"card-text\">Discription : ".$shop['description']. "</p>";
+                    echo "<div class=\"d-flex justify-content-between align-items-center\">";
+                      echo "<div class=\"btn-group\">";
+                        echo "<a href=\"panier.php\" class=\"btn btn-success text-white btn-outline-secondary rounded mx-3\">Ajoutez au Panier</a>";
+                        echo "<button type=\"button\"  class=\"btn btn-danger text-white btn-outline-secondary rounded text-center\">Coup de Coeur</button>";
+                      echo "</div>";
                     echo "</div>";
                 echo "</div>";
               echo "</div>";
@@ -150,26 +123,18 @@ require_once 'inc/init.inc.php';
           }
         ?>
       </div>
-        
     </div>
-  </div>
+  </main>
 
-</main>
+  <footer class="text-muted py-5">
+    <div class="container">
+      <p class="float-end mb-1">
+        <a href="#"><i class="bi bi-arrow-up-circle-fill"></i></a>
+      </p>
+      <p class="mb-1">Ma Boutique en PHP &copy; sema, Colombbus</p>
+    </div>
+  </footer>
 
-<footer class="text-muted py-5">
-  <div class="container">
-    <p class="float-end mb-1">
-      <a href="#">Back to top</a>
-    </p>
-    <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
-  </div>
-</footer>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-
-      
+  <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> 
   </body>
 </html>
