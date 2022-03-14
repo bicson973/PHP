@@ -6,8 +6,8 @@ require_once '../inc/functions.php';
 
 $pdoENT = new PDO( 'mysql:host=localhost;dbname=entreprise',// hôte nom BDD
               'root',// pseudo 
-              // '',// mot de passe
-              'root',// mdp pour MAC avec MAMP
+              '',// mot de passe
+              // 'root',// mdp pour MAC avec MAMP
               array(
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,// afficher les erreurs SQL dans le navigateur
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',// charset des échanges avec la BDD
@@ -74,7 +74,7 @@ if ( !empty($_POST) ) {
           <div class="col-md-8">
             <h2>les employés</h2>
             <?php
-			// 3 affichage de données 
+			      // 3 affichage de données 
               $requete = $pdoENT->query( " SELECT * FROM employes ORDER BY id_employes DESC " );
               // debug($resultat);
               $nbr_employes = $requete->rowCount();
