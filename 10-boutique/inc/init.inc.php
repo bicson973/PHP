@@ -9,8 +9,8 @@
 $host = 'localhost';// le chemin vers le serveur de données
 $database = 'maboutique';// le nom de la BDD
 $user = 'root';// le nom d'utilisateur pour se connecter
-// $psw = '';// mdp PC XAMPP
-$psw = 'root';// mdp MAC MAMP
+$psw = '';// mdp PC XAMPP
+// $psw = 'root';// mdp MAC MAMP
 
 $pdoMAB = new PDO('mysql:host='.$host.';dbname='.$database,$user,$psw,
 array(

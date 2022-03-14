@@ -17,7 +17,8 @@ $pdoENT = new PDO( 'mysql:host=localhost;dbname=entreprise',// hôte nom BDD
 
 // 3 TRAITEMENT DU FORMULAIRE
 
-if ( !empty($_POST) ) {
+if ( !empty($_POST) ) 
+{
     // debug($_POST);
   $_POST['prenom'] = htmlspecialchars($_POST['prenom']);// pour se prémunir des failles et des injections SQL
 	$_POST['nom'] = htmlspecialchars($_POST['nom']);
@@ -37,6 +38,29 @@ if ( !empty($_POST) ) {
 		':salaire' => $_POST['salaire'],
 	));
 }
+
+// 4 INITIALISATION DE LA VARIABLE $CONTENU
+
+$contenu="";
+
+// 5 SUPPRESSION D'UN EMPLOYE
+
+// debug($_GET);
+if(isset($_GET['action']) && $_GET['action'] == 'supprimer' && isset($_GET['id_employes']))
+{
+  $resultat = $pdoENT->prepare("DELETE FROM employes WHERE id_employes = :id_employes");
+  $resultat->execute(array(
+    ':id_employes' => $_GET['id_employes']
+  ));
+
+  if ($resultat->rowCount() == 0) 
+  {
+    $contenu .= '<div class="alert alert-danger">Erreur de suppression</div>';
+  } else {
+    $contenu .= '<div class="alert alert-success">Employé supprimé</div>';
+  }
+}
+
 ?>
 
 <!doctype html>
@@ -81,8 +105,9 @@ if ( !empty($_POST) ) {
               // debug($nbr_commentaires);
             ?>
             <h5>Il y a <?php echo $nbr_employes; ?> employés </h5>
+            <?php echo $contenu ?>
 
-            <table class="table table-striped">
+            <table class="table table-striped text-center">
              <thead>
                <tr>
                  <th>Id</th>
@@ -92,6 +117,7 @@ if ( !empty($_POST) ) {
                  <th>Salaire</th>
                  <th>Date d'embauche</th>
                  <th>Fiche employé</th>
+                 <th>Suppression</th>
                </tr>
              </thead>
              <tbody>
@@ -104,7 +130,8 @@ if ( !empty($_POST) ) {
 				   <td><?php echo $ligne['service']; ?></td>
 				   <td><?php echo $ligne['salaire']; ?></td>
 				   <td><?php echo $ligne['date_embauche']; ?></td>
-          <td><a href="03_fiche_employe.php?id_employes=<?php echo $ligne['id_employes']; ?>">maj</a></td>
+           <td><a href="03_fiche_employe.php?id_employes=<?php echo $ligne['id_employes']; ?>">modifier</a></td>
+           <td><a href="?action=supprimer&id_employes=<?php echo $ligne['id_employes']; ?>" onclick="confirm('Voulez-vous supprimer cet employé ?')">supprimer</a></td>
 			   </tr>
 			   <!-- fermeture de la boucle -->
 			   <?php } ?>
